@@ -1,0 +1,2 @@
+- cls method vs self
+- classmethod vs instancemethod
