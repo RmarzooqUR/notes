@@ -79,3 +79,10 @@ install: myproject
 # Managing Libraries
 - libraries are `.a` files. above `.h` files are converted into object files. These need to be compiled in a library
 - the *rule* for this is -> `libname(objectFileName.o)`
+```makefile
+MYLIB = mylibname.a
+
+myproject: main.o $(MYLIB)
+    $(CC) -o main.o $(MYLIB)
+$(MYLIB):   $(MYLIB)(dep1.o) $(MYLIB)(dep2.o)
+```
