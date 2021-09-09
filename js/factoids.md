@@ -1,0 +1,7 @@
+- `||` operator can return a value. 
+  - returns RHS when LHS is falsy
+- `??` operator
+  - returns RHS when LHS is *null* or *undefined*
+- `&&` operator
+  - returns LHS when LHS is falsy
+  - else returns RHS when LHS is truthy

@@ -1,8 +1,8 @@
 - [Misc](#misc)
 - [Makefiles](#makefiles)
-- [Macros](#macros)
-- [Multiple targets](#multiple-targets)
-- [Managing Libraries](#managing-libraries)
+  - [Macros](#macros)
+  - [Multiple targets](#multiple-targets)
+  - [Managing Libraries](#managing-libraries)
 
 
 # Misc
@@ -30,7 +30,7 @@ dep1.o: dep1.c 1.h
 dep2.o: dep2.c 1.h 2.h
     gcc -c dep2.c
 ```
-# Macros
+## Macros
 macros are variables that can be used in *rules* and can be changed using the command line
 + useful when different *rules* are to be used in different environments
 - `CC=gcc`
@@ -44,7 +44,7 @@ main.o: main.c 1.h
     $(CC) -I$(INCLUDES) $(CFLAGS) -c main.c
 ```
 
-# Multiple targets
+## Multiple targets
 -  we can make multiple targets like `clean`,`install` etc
    -  remember `make clean` & `make install`
 - if we only run `make` in the command line, only the first target is built
@@ -76,7 +76,7 @@ install: myproject
     fi
 ```
 
-# Managing Libraries
+## Managing Libraries
 - libraries are `.a` files. above `.h` files are converted into object files. These need to be compiled in a library
 - the *rule* for this is -> `libname(objectFileName.o)`
 ```makefile
