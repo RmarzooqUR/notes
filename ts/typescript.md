@@ -110,6 +110,7 @@ interface User extends {name:string}
 ```
 
 # Generics, Enums and Tuples
+## Generics
 - with generics `<T>` can capture types
 - captured types can be used in functions and interfaces/classes to define behiviour/data of objects respectively
 ```ts
@@ -128,12 +129,27 @@ const instanceWithGeneric: withGeneric<string[]>  = {
 }
 //see app.ts for class implementation
 ```
-
+## Enums
 - with keyword `enum`
 ```ts
 enum resourceType { BOOK, APPLE, NEW};
 console.log("BOOK-",resourceType.BOOK)
 ```
+- enums can be numerical and string constants and computed
+- in above example typescript assigns incremental values to each enum type (0,1,2)
+- if the first enum had an initialization the others will have incremental values
+- **non initialized enums can't come after computed enums.**
+```ts
+enum newEnum {
+    book = 1,               //constant
+    data = getEnumVal(),    //computed enums
+    new,                    //constant
+    read = 2 << 1;          //computed enums
+    len = "const".length    //computed enums
+}
+```
+- useful when using as a switch case.
+## Tuples
 - with tuples we can define the types of items at specific positions in array
 ```ts
 let newTuple: [string, number, boolean]
