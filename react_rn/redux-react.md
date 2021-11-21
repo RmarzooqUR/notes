@@ -20,3 +20,37 @@ const mapDispatchToProps(dispatch) => {
 }
 
 ```
+# Using @reduxjs/toolkit
+- toolkit allows you to use redux pattern without using `mapStatetoProps`/`mapDispatchtoProps`
+  - using hooks like `useSelector` and `useDispatch`
+  - `useSelector` - allows you to fetch the complete state or part of the state.
+  - `useDispatch` - returns the dispatch function and can be called within the component
+
+## Procedure
+- store is configured using `configureStore` and options object is passed with a reducer property
+```js
+import { configureStore } from '@reduxjs/toolkit'
+import {reducer} from 'slice.js'
+
+export default configureStore({
+  reducer: {
+      counter:reducer
+  }
+})
+```
+- **slice** allows you to create reducer functions without writing actions
+  - slice is created with `createSlice` and options are passed
+    - must contain `name`, `initialState`, at least 1 `reducer`, properties.
+    - reducer is a function with `state` as its param
+  - the `slice`'s properties `slice.reducer`, `slice.actions` can be exported
+    - the actions can be passed to dispatch wherever required
+```js
+import { reducer } from 'slice.js'
+
+const App = () => {
+    const stat = useSelector(state=>state.item1.stat)
+    const dispatch = useDispatch()
+    //...
+    dispatch(reducer())
+}
+```
