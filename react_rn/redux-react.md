@@ -54,3 +54,10 @@ const App = () => {
     dispatch(reducer())
 }
 ```
+
+# Async Actions
+- any async logic is a side effect and redux doesnt handle side effects.
+- therefore we write a middleware that intercepts an async action and dispatches it upon completion of the side effect.
+## Redux Thunk
+
+## Custom redux middleware
