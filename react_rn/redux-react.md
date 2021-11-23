@@ -6,19 +6,28 @@
 
 
 # Map store(state)/dispatch to props (React-redux)
+- `mapStoretoPorps` takes 2 params `state, ownProps`
+- `mapStoretoProps` must return an object.
 - `mapStoretoProps` allows store to be passed as props to a react component
   - which can then be destructured as `const Component = ({ store }) => {}`
   - the `mapStoretoProps(store)` function returns the store or part of the store.
-- `mapDispatchtoProps(dispatch)` makes dispatch available to props via a returned callback.
+---
+- `mapDispatchtoProps` can either be an object or function.
+**As Object**
+it contains values properties that are actionCreators and dispatch actions
 ```js
-const mapDispatchToProps(dispatch) => {
-    return {
-        handleDispatch(data){
-            dispatch({type:'someActionType',payload:data})
-        }
-    }
-}
-
+import {increment, decrement} from './actions'
+const mapDispatchtoProps = {increment, decrement}
+```
+**As Function**
+- should return a plain object.
+- if `mapDispatchtoProps(dispatch)` isnt used in `connect`, `dispatch` is injected to component by default.
+- `dispatch` is injected only for 
+  - above condition
+  - alongwith other action creators, it is returned in the `mapDispatchtoProps` function. 
+```js
+import {increment, decrement} from './actions'
+const mapDispatchToProps = (dispatch, ownProps) => { return {increment:(data)=>dispatch(increment(data))}}
 ```
 # Using @reduxjs/toolkit
 - toolkit allows you to use redux pattern without using `mapStatetoProps`/`mapDispatchtoProps`
@@ -61,3 +70,73 @@ const App = () => {
 ## Redux Thunk
 
 ## Custom redux middleware
+
+# Full Boilderplates
+## non-react redux pattern
+```js
+// reducers.js
+const reducer = (store, action){
+  switch(action){
+    case "case1": 
+      return {
+        ...state,
+        data1:  action.payload
+      }
+    case default:
+      return state;
+  }
+}
+```
+```js
+// store
+const store = createStore(reducer)
+```
+```js
+// actions.js
+const putBinary = (data) =>{
+  return {type:"case1", payload:data}
+}
+```
+```js
+// usage
+import putBinary from './actions'
+
+const data = store.getState()
+store.dispatch(putBinary("10001001"))
+``` 
+## connect api
+- use `<Provider store={store}>` parent component to provide access to store.
+```js
+// usage
+import putBinary from './actions'
+
+const DataComponent = (props)=>{
+  props.putBinary()   //dispatch putBinary action
+  props.dispatch(putBinary())    //
+  return <></>
+}
+
+const mapStateToProps = (state, ownProps) => {{data:state.specificData[ownProps.id]}}
+
+const mapDispatchToProps = {putBinary}
+const mapDispatchToProps = (dispatch, ownProps) => {{putBinary, dipatch}}
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return { 
+    putBinary: (binNo)=>dispatch(putBinary(binNo)),
+    // dispatch     //injecting dispatch
+  }
+}
+// use bindActionCreators to avoid rewriting dispatches
+const mapDispatchtoProps = (dispatch) => {
+  return bindActionCreators({putBinary}, dispatch);
+}
+// inject dispatch
+const mapDispatchtoProps = (dispatch) => {
+  return {...bindActionCreators({putBinary}, dispatch), dispatch};
+}
+```
+
+## reduxjs/toolkit
+[provided above](#procedure)
+## redux thunk
+## custom middleware
