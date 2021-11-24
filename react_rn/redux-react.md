@@ -67,10 +67,6 @@ const App = () => {
 # Async Actions
 - any async logic is a side effect and redux doesnt handle side effects.
 - therefore we write a middleware that intercepts an async action and dispatches it upon completion of the side effect.
-## Redux Thunk
-
-## Custom redux middleware
-
 # Full Boilderplates
 ## non-react redux pattern
 ```js
@@ -138,5 +134,3 @@ const mapDispatchtoProps = (dispatch) => {
 
 ## reduxjs/toolkit
 [provided above](#procedure)
-## redux thunk
-## custom middleware
