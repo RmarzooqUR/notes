@@ -1,3 +1,11 @@
+- [About naming ur react component files.](#about-naming-ur-react-component-files)
+- [How to re-render on props change?](#how-to-re-render-on-props-change)
+- [Cleanup method in useEffect](#cleanup-method-in-useeffect)
+  - [Example](#example)
+    - [**Senario** -](#senario--)
+    - [**Solution**](#solution)
+- [`useEffect` as lifecycle methods \& some pitfalls](#useeffect-as-lifecycle-methods--some-pitfalls)
+
 # About naming ur react component files. 
 - think about how a file name would be written in imports and when multiple files are open in ur editor
 - if all comps have an `index.js`, can't differentiate in editor
@@ -22,4 +30,62 @@ const App = ( { props } ) => {
 }
 ```
 
-s
+# Cleanup method in useEffect
+```js
+useEffect(() => { 
+  // do something
+  return () => { /*cleanup*/ } // cleanup function
+}, [])
+```
+- react performs a cleanup after a component is unmounted or the next effect is run
+  - we need to provide the cleanup function in order for react to perform it
+- useEffects of this type help in relieving memory and preventing memory leaks in the appln.
+
+## Example
+React throws error when the application tries to set state of an unmounted component
+
+### **Senario** - 
+You click a button which runs an effect which fetches data(not preferable - use hooks/event methods)
+1. -> but you perform another action before the fetch completes
+2. -> component is unmounted
+3. -> the success of fetch tries to update the state of unmounted component
+4. -> error
+### **Solution**
+add a request abort in the cleanup function
+```js
+// using axios to fetch
+const [data, setData] = useState()
+useEffect(() => {
+  const src = axios.CancelToken.source()  // signal to axios that fetch was cancelled
+  axios.get({ cancelToken: src.token })
+    .then((data) => setData(data))
+    .catch((err) => {
+      if (err == axios.isCancel()){
+        console.log(err)
+      } else {/* handle api error */}
+    })
+
+  // cleanup function which runs on unmount (aborting the fetch)
+  return () => {
+    src.cancel()
+  }
+})
+
+```
+# `useEffect` as lifecycle methods & some pitfalls
+- default behavior of useEffect is infinte loop
+`useEffect(() => setSomeState(), [someState])` results in infinite loops
+
+- useEffect *can be used* as a lifecycle method but it is not intended for that. 
+```js
+// componentDidMount
+useEffect(() => { /*do something */ } , [])
+
+// componentDidUpdate
+useEffect(() => { /* do something */}, [ someState ])
+
+// componentDidUnmount
+useEffect(() => { 
+  return () => { /*cleanup*/ } // cleanup function
+}, [])
+```

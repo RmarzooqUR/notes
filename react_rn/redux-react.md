@@ -1,3 +1,13 @@
+- [Terms](#terms)
+- [Map store(state)/dispatch to props (React-redux)](#map-storestatedispatch-to-props-react-redux)
+- [Using @reduxjs/toolkit](#using-reduxjstoolkit)
+  - [Procedure](#procedure)
+- [Async Actions](#async-actions)
+- [Full Boilderplates](#full-boilderplates)
+  - [non-react redux pattern](#non-react-redux-pattern)
+  - [connect api](#connect-api)
+  - [reduxjs/toolkit](#reduxjstoolkit)
+
 # Terms
 - **store** - where the global state is stored. A reducer is passed to the store.
 - **reducer** - modifies the state based on incoming action's *type, payload*.
