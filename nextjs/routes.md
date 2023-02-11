@@ -26,3 +26,8 @@ This helps in-
 
 # Dynamic routes
 wrapping a route name in square brackets parameterises it with folder name as the param name: `[id]`
+
+## Catch All & Optional catch all segments
+- `shop/[...slug]` will catch `/shop/a`, `/shop/a/b/c` - catch all
+- `shop/[[...slug]]` will catch `/shop`, `/shop/a`, `/shop/a/basa/x` - optional catch all
+
