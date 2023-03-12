@@ -5,6 +5,7 @@
     - [**Senario** -](#senario--)
     - [**Solution**](#solution)
 - [`useEffect` as lifecycle methods \& some pitfalls](#useeffect-as-lifecycle-methods--some-pitfalls)
+- [Dotenv](#dotenv)
 
 # About naming ur react component files. 
 - think about how a file name would be written in imports and when multiple files are open in ur editor
@@ -89,3 +90,11 @@ useEffect(() => {
   return () => { /*cleanup*/ } // cleanup function
 }, [])
 ```
+
+# Dotenv
+- CRA internally uses `dotenv` pkg for managing environment variables
+- or you can create a `.env` file & use `process.env.REACT_APP_<ENVVARNAME>` directly in your app
+- or multiple files like `.env.development`, `.env.prod` etc can be created
+  - and used as 
+    - `npm start:.env.development`
+    - `npm build:.env.prod`
