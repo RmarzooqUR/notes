@@ -42,4 +42,4 @@ export default RootLayout = ({ children }) => {
 - Routing in NextJS is done with directory structure. 
 - a directory with `page.js` is publicly accessible
 - to create UI on route, export a default React component
-- more details (here)[./routes.md]
+- more details [here](./routes.md)
