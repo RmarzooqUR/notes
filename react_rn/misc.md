@@ -98,3 +98,11 @@ useEffect(() => {
   - and used as 
     - `npm start:.env.development`
     - `npm build:.env.prod`
+
+
+# [Higher Order Components](https://legacy.reactjs.org/docs/higher-order-components.html)
+- are wrapper components, can be used on components that have similar implementation
+  - Ex. an `itemList` & an `itemComponent` need not have to be 2 compnents if they fetch from different sources
+  - we can pass the individual datasource in the wrapper as prop and the wrapper returns a component
+- [HOC is a pure function](https://legacy.reactjs.org/docs/higher-order-components.html#:~:text=A%20HOC%20is%20a%20pure%20function%20with%20zero%20side%2Deffects)
+- 
