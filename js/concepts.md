@@ -12,6 +12,7 @@ const gen = generator() // gen is now a Generator object
 ```
 ## generator methods
 - next() method
+  - runs till the next yield statement 
   - returns object with `value` and `done` properties
   - a true value of `done` implies that the generator has finished.
 - return(value)
