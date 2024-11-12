@@ -45,9 +45,12 @@ module.exports={
 - by default tests pass when there is no assumption in a test
 
 # Async
+Jest isn't aware by default that a test should run async, so if assertion runs asynchronously,
+the assertion would run after the test has already executed.
 ## Callbacks
-- use a param in callback of it, call it in expect
-- wrap in try/catch to handle failing tests
+- use a `done` param in callback of `it`, this indicates to jest that test is async & it doesn't end the test until `done()` is called,
+- call it after expect
+- wrap in try/catch to handle failing tests, exception thrown by `expect` is caught
 ```js
 it('test callback', done=>{
   setTimeout(() => {
