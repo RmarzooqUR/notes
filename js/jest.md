@@ -109,6 +109,10 @@ beforeEach(()=>{
 - (up) - reason for running test setup/teardown in `before`/`after` blocks. (since previous setups/teardowns may interfere with later tests' setups and teardowns)
 
 # Mocking
+1. Create mocks definitions of actual methods/modules
+2. in test file, import original method/module
+3. use `jest.mock` to create mock.
+4. mocked functions have [special methods](https://jestjs.io/docs/mock-function-api#methods) that set the functions behavior wherever it is called while running the test
 - mock `parameters`, `return values`, `modules` and `implementations`
 - mocking a function/module is done by creating a `__mocks__` dir as a sibling of the module to be mocked
   - then create a file of same name as the module to be mocked, inside the `__mocks__` dir
