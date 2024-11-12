@@ -110,6 +110,9 @@ beforeEach(()=>{
 
 # Mocking
 - mock `parameters`, `return values`, `modules` and `implementations`
+- mocking a function/module is done by creating a `__mocks__` dir as a sibling of the module to be mocked
+  - then create a file of same name as the module to be mocked, inside the `__mocks__` dir
+  - use `jest.fn` to mock the functions that are required to be mocked  
 - use when -
   - the test uses long running blocks like network calls. which may make the test fragile
   - the code that the current test tests uses other functions which we dont want to run and therefore mock it.
