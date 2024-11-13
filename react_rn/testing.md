@@ -1,3 +1,18 @@
 # React Testing Library
 - uses [jest](../js/jest.md) internally
 - provides apis to query and assert on the DOM
+- provides apis to render dom using `render`, `screen`.
+  - using `createRoot` method is the recommended best practice now
+- `userEvent` can be used to simulate user clicking/typing etc on the dom elements
+- various queries are provided.
+  - `getByX` - throws exception if dom node not found (fails the test b4 expect)
+  - `queryByX` - returns null if dom node not found (runs the expect)
+  - `await findByX` - waits until dom node is visible
+- `await waitFor`
+  - we can write queries/assertions inside the callback for `waitFor`
+  - it wiats for the assertions inside it to pass.
+  - useful when testing if dom element is removed from dom.
+  - can pass `options` to set _max wait_ etc.
+- `getByRole`
+  - can pass an **accessible name/any other accessiblility param** to options arg of `getByRole`
+  - will ensure accessibility is maintained
