@@ -34,3 +34,6 @@ return c
 ```
 - **Extraction** of logic into simple named funtions
 - Properly **Naming variables** - (hardest thing)
+
+- When needing to add properties to classes / types / interfaces
+  - Extend the original class rather than adding props in the same class
