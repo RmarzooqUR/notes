@@ -1,0 +1,2 @@
+- `justify-content` property aligns the items in a `div` along the main axis(`flex-direction: col/row`) of `div`
+- the `top` property defines vertical position of an element inside its containing block(which is computed based on `position` property. 
